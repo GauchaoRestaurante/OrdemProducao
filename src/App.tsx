@@ -44,7 +44,6 @@ export default function App() {
   const [currentShift, setCurrentShift] = useState<ShiftType>('madrugada');
   const [viewMode, setViewMode] = useState<'edit' | 'preview'>('preview');
   const [fontSize, setFontSize] = useState<FontSizeSetting>('normal');
-  const [tonerSaveMode, setTonerSaveMode] = useState<boolean>(true); // Default to toner saver
   const [printBlankCheckboxes, setPrintBlankCheckboxes] = useState<boolean>(true); // Blank boxes for kitchen pen filling
   const [isCollabModalOpen, setIsCollabModalOpen] = useState<boolean>(false);
   const [toastMessage, setToastMessage] = useState<string | null>(null);
@@ -148,8 +147,6 @@ export default function App() {
         onChangeViewMode={setViewMode}
         fontSize={fontSize}
         onChangeFontSize={setFontSize}
-        tonerSaveMode={tonerSaveMode}
-        onToggleTonerSave={() => setTonerSaveMode(!tonerSaveMode)}
         printBlankCheckboxes={printBlankCheckboxes}
         onTogglePrintBlankCheckboxes={() => setPrintBlankCheckboxes(!printBlankCheckboxes)}
         onPrint={handlePrint}
@@ -199,7 +196,6 @@ export default function App() {
             <PrintableSheet
               order={currentOrder}
               fontSize={fontSize}
-              tonerSaveMode={tonerSaveMode}
               printBlankCheckboxes={printBlankCheckboxes}
               onToggleTask={handleToggleTask}
               onToggleClosingCheck={handleToggleClosingCheck}

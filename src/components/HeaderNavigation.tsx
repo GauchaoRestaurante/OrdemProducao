@@ -3,7 +3,7 @@ import { ShiftType, FontSizeSetting } from '../types';
 import { GauchaoLogo } from './GauchaoLogo';
 import { 
   Printer, Edit3, Eye, Users, RefreshCw, 
-  Type, Droplets, CheckSquare
+  Type, CheckSquare
 } from 'lucide-react';
 
 interface HeaderNavigationProps {
@@ -13,8 +13,6 @@ interface HeaderNavigationProps {
   onChangeViewMode: (mode: 'edit' | 'preview') => void;
   fontSize: FontSizeSetting;
   onChangeFontSize: (size: FontSizeSetting) => void;
-  tonerSaveMode: boolean;
-  onToggleTonerSave: () => void;
   printBlankCheckboxes: boolean;
   onTogglePrintBlankCheckboxes: () => void;
   onPrint: () => void;
@@ -29,8 +27,6 @@ export const HeaderNavigation: React.FC<HeaderNavigationProps> = ({
   onChangeViewMode,
   fontSize,
   onChangeFontSize,
-  tonerSaveMode,
-  onToggleTonerSave,
   printBlankCheckboxes,
   onTogglePrintBlankCheckboxes,
   onPrint,
@@ -75,21 +71,6 @@ export const HeaderNavigation: React.FC<HeaderNavigationProps> = ({
           >
             <CheckSquare className="w-3.5 h-3.5" />
             <span className="hidden sm:inline">Checkboxes:</span> {printBlankCheckboxes ? 'Em Branco' : 'Marcados'}
-          </button>
-
-          {/* Toner Economy Toggle */}
-          <button
-            type="button"
-            onClick={onToggleTonerSave}
-            className={`inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold rounded-lg border transition-colors cursor-pointer ${
-              tonerSaveMode
-                ? 'bg-emerald-50 text-emerald-800 border-emerald-300'
-                : 'bg-white text-neutral-700 border-neutral-300 hover:bg-neutral-50'
-            }`}
-            title="Ativar/desativar modo econômico de toner (fundos claros e sem preenchimentos escuros)"
-          >
-            <Droplets className="w-3.5 h-3.5 text-neutral-700" />
-            <span className="hidden sm:inline">Economia Toner:</span> {tonerSaveMode ? 'Ativado' : 'Desativado'}
           </button>
 
           {/* Collaborators */}

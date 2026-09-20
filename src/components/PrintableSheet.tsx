@@ -6,7 +6,7 @@ import { Check, Moon, Sun, Utensils } from 'lucide-react';
 interface PrintableSheetProps {
   order: ProductionOrder;
   fontSize: FontSizeSetting;
-  tonerSaveMode: boolean;
+  tonerSaveMode?: boolean;
   printBlankCheckboxes?: boolean;
   onToggleTask?: (sectionId: string, taskId: string) => void;
   onToggleClosingCheck?: (checkId: string) => void;
@@ -16,7 +16,7 @@ interface PrintableSheetProps {
 export const PrintableSheet: React.FC<PrintableSheetProps> = ({
   order,
   fontSize,
-  tonerSaveMode,
+  tonerSaveMode = true,
   printBlankCheckboxes = false,
   onToggleTask,
   onToggleClosingCheck,
@@ -83,10 +83,9 @@ export const PrintableSheet: React.FC<PrintableSheetProps> = ({
   }[fontSize];
 
   // Toner-saving palette: minimal toner usage with sharp contrast
-  const borderColor = tonerSaveMode ? 'border-neutral-900' : 'border-neutral-800';
-  const headerBg = tonerSaveMode ? 'bg-neutral-100 text-neutral-900' : 'bg-neutral-900 text-white';
-  const subHeaderBg = tonerSaveMode ? 'bg-neutral-100 text-neutral-900' : 'bg-neutral-100 text-neutral-900';
-  const alertBg = tonerSaveMode ? 'bg-white text-neutral-900 border-y-2 border-neutral-900' : 'bg-neutral-100 text-neutral-900 border-y border-neutral-800';
+  const borderColor = 'border-neutral-900';
+  const subHeaderBg = 'bg-neutral-100 text-neutral-900';
+  const alertBg = 'bg-white text-neutral-900 border-y-2 border-neutral-900';
 
   // Helper for Shift Icon displayed strictly next to the word "TURNO"
   const renderShiftIcon = (shift: string) => {
@@ -114,18 +113,23 @@ export const PrintableSheet: React.FC<PrintableSheetProps> = ({
         boxSizing: 'border-box',
       }}
     >
-      {/* 1. TOP TITLE HEADER */}
+      {/* 1. TOP TITLE HEADER - Brand identity matching edition & preview */}
       <div
-        className={`w-full text-center py-2 px-3 border-b-2 ${borderColor} ${headerBg} flex items-center justify-center gap-2.5`}
+        className="w-full py-2.5 px-4 border-b-2 border-neutral-900 bg-white flex items-center justify-center gap-3.5"
       >
         <GauchaoLogo
-          variant={tonerSaveMode ? 'monochrome' : 'full'}
-          size={26}
+          variant="full"
+          size={38}
           className="shrink-0"
         />
-        <h1 className={`${fontSizes.title} font-black uppercase tracking-wider`}>
-          ORDEM DE PRODUÇÃO — {order.shift}
-        </h1>
+        <div className="flex flex-col justify-center">
+          <span className="text-lg sm:text-xl font-black text-neutral-950 tracking-tight leading-none uppercase">
+            Gauchão Restaurante
+          </span>
+          <p className="text-xs sm:text-[13px] font-bold text-neutral-600 uppercase tracking-wide mt-0.5 leading-none">
+            Ordem de Produção
+          </p>
+        </div>
       </div>
 
       {/* 2. METADATA HEADER GRID (DATA | TURNO | CARDÁPIO DO DIA | RESPONSÁVEIS) */}
@@ -291,7 +295,7 @@ export const PrintableSheet: React.FC<PrintableSheetProps> = ({
 
       {/* 5. FECHAMENTO DO TURNO CHECKLIST GRID */}
       <div className={`w-full border-b-2 ${borderColor}`}>
-        <div className={`w-full py-1 px-3 text-center border-b border-neutral-900 ${headerBg}`}>
+        <div className={`w-full py-1 px-3 text-center border-b border-neutral-900 ${subHeaderBg}`}>
           <h2 className={`${fontSizes.sectionTitle} uppercase tracking-widest`}>
             FECHAMENTO DO TURNO
           </h2>

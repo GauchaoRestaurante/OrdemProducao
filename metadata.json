@@ -2,5 +2,7 @@
   "name": "Ordem de Produção - Gauchão Restaurante",
   "description": "Sistema de gestão de tarefas por colaboradora e impressão otimizada em folha A4 com baixo consumo de toner para os turnos do Gauchão Restaurante.",
   "requestFramePermissions": [],
-  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
 }
